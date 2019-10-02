@@ -1,28 +1,37 @@
 public class Dau2Joc {
-    int dau;
     static int partidasganados;
-    Dau2 dau2= new Dau2();
-    Menu menu = new Menu();
+    boolean ganar = false;
+    Menu menu;
+    Dau2 dau2;
+    int dauA;
+    int dauB;
+    int dauC;
 
+    public  Dau2Joc() {
+        dau2 = new Dau2();
+        menu = new Menu();
+    }
 
-    void jugar(){
-        int ganar=0;
-        int dau;
+    void jugar() {
+
         dau2.tirat();
-        this.dau = dau2.getValor();
-        dau2.imprimir(1);
+        dauA = dau2.getValor();
 
-        for (int i = 2; i < 4; i++) {
-            dau2.tirat();
-            dau = dau2.getValor();
-            dau2.imprimir(i);
-            if (dau==this.dau){
-                ganar++;
-            }
+        dau2.tirat();
+        dauB = dau2.getValor();
+
+        dau2.tirat();
+        dauC = dau2.getValor();
+
+        dau2.imprimir(1,dauA);
+        dau2.imprimir(2,dauB);
+        dau2.imprimir( 3,dauC);
+
+        if (dauA == dauB && dauA == dauC ){
+            ganar=true;
+            System.out.println("!!! has ganado !!!");
         }
-
-        if (ganar==2){
-            System.out.println("!!!ha ganado!!!");
+        if (ganar){
             partidasganados++;
         }
         menu.menudau2();
